@@ -1,0 +1,15 @@
+\RequirePackage{enumitem}
+
+\setlist[itemize,1]{leftmargin=2em,rightmargin=2em}
+\setlist[itemize,2]{leftmargin=1.25em,rightmargin=2em}
+\setlist[itemize,3]{leftmargin=1.25em,rightmargin=2em}
+
+
+\setlist[enumerate]{leftmargin=2em,rightmargin=2em,font={\color{C0}\bfseries}}
+\setlist[description]{labelindent=1ex,leftmargin=1em,rightmargin=2em,font={\sffamily\color{C0}\bfseries}}
+
+\AtBeginDocument{
+	\def\labelitemi{\includegraphics[height=1.75ex]{../../Tooling/Bullets/swoosh}}
+	\def\labelitemii{\includegraphics[height=1.75ex]{../../Tooling/Bullets/donk}}
+	\def\labelitemiii{\includegraphics[height=1.75ex]{../../Tooling/Bullets/plunk}}
+}

@@ -1,0 +1,545 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass paper
+\begin_preamble
+\input{../../Tooling/TeX/Colors}
+\input{../../Tooling/TeX/Page}
+\input{../../Tooling/TeX/Fonts}
+\input{../../Tooling/TeX/Blocks}
+\input{../../Tooling/TeX/Titles}
+\input{../../Tooling/TeX/Lists}
+\input{../../Tooling/TeX/Floats}
+\input{../../Tooling/TeX/Forms}
+\input{../../Tooling/TeX/PythonTeX}
+\input{../../Tooling/TeX/Course}
+\end_preamble
+\use_default_options true
+\begin_modules
+enumitem
+multicol
+CMEparts
+PythonTeX
+\end_modules
+\maintain_unincluded_children no
+\language english
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format PyTeXPDF
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment center
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 2
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "linkcolor=C0,citecolor=C2d,urlcolor=C4"
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 1
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 1
+\math_indentation default
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Standard
+The second problem,
+ Equation
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Poisson"
+nolink "false"
+
+\end_inset
+
+),
+ can be used to model two-dimensional heat conduction,
+ but is more commonly known as the Poisson equation.
+\begin_inset Float figure
+placement document
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset External
+	template TikZ
+	filename ../../Build/Plots/Basics/Analytical/Function-2D.pgf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Two-dimensional heat conduction as computed from the analytical model found in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:PDE-general-form"
+plural "true"
+caps "true"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+ through
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:PDE-wavevectors"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Two-dimensional-heat-condution"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\frac{\partial^{2}T}{\partial x^{2}}+\frac{\partial^{2}T}{\partial y^{2}}+G & =0\label{eq:Poisson}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This problem can be solved using the separation of variables for non-homogeneous partial differential equations.
+\end_layout
+
+\begin_layout Standard
+The final problem is not really one that must be solved,
+ but is still a good exercise in the use of vectors and coordinate transforms.
+ Many vortexes follow the form given in Equations
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Vortex-r"
+nolink "false"
+
+\end_inset
+
+) and (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Vortex-theta"
+nolink "false"
+
+\end_inset
+
+).
+\begin_inset Float figure
+placement document
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset External
+	template TikZ
+	filename ../../Build/Plots/Basics/Analytical/Function-VecField.pgf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Velocity vector plot as computed by 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:Vortex-theta"
+plural "true"
+caps "true"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+ and
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Vortex-xy"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+ Both color and arrow length map to the velocity magnitude.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Velocity-vector-plot"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+u_{r} & =0\label{eq:Vortex-r}\\
+u_{\theta} & =\begin{cases}
+r\left(\frac{U}{R}\right) & r\leq R\\
+\frac{1}{r}\left(RU\right) & r>R
+\end{cases}\label{eq:Vortex-theta}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+While this model is convenient,
+ a vortex in any viscous medium cannot support a sharp transition from one regime to the other,
+ and would instead smoothly transition from one regime to another.
+\end_layout
+
+\begin_layout Standard
+The solution to the Poisson equation is found in Equations
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:PDE-general-form"
+nolink "false"
+
+\end_inset
+
+) through (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:PDE-wavevectors"
+nolink "false"
+
+\end_inset
+
+),
+ and plotted in Figure
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Two-dimensional-heat-condution"
+nolink "false"
+
+\end_inset
+
+).
+\size small
+
+\begin_inset Formula 
+\begin{align}
+T\left(x,y\right) & =\phi\left(x\right)+\xi\left(x,y\right)\label{eq:PDE-general-form}\\
+\phi\left(x\right) & =\frac{GL^{2}}{2}\left(1-\frac{x^{2}}{L^{2}}\right)\label{eq:PDE-specific-solution}\\
+\xi\left(x,y\right) & =-2GL^{2}\sum_{n=0}^{\infty}\left[\frac{\left(-1\right)^{n}}{\left(\lambda_{n}L\right)^{3}}\frac{\cosh\left(\lambda_{n}y\right)}{\cosh\left(\lambda_{n}L\right)}\cos\left(\lambda_{n}x\right)\right]\label{eq:PDE-homogeneous-solution}\\
+\lambda_{n} & =\frac{2n+1}{2L}\pi\label{eq:PDE-wavevectors}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+While these expressions are more complex than the solution to the one-dimensional problem,
+ the implementation of this solution in code is again straightforward.
+\end_layout
+
+\begin_layout Standard
+Finally,
+ the vector form of the vortex velocity can be computed as a function of 
+\begin_inset Formula $r$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta$
+\end_inset
+
+ for plotting,
+ as shown in Equation
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Vortex-xy"
+nolink "false"
+
+\end_inset
+
+) and plotted in Figure
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Velocity-vector-plot"
+nolink "false"
+
+\end_inset
+
+).
+\begin_inset Formula 
+\begin{align}
+\vec{u} & =\left(\hat{e}_{y}\cos\theta-\hat{e}_{x}\sin\theta\right)\cdot u_{\theta}\left(r\right)\label{eq:Vortex-xy}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This function must take 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ as arguments,
+ compute 
+\begin_inset Formula $r$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta$
+\end_inset
+
+,
+ and then return the Cartesian coordinate version of the velocity vector as a 2-vector.
+\end_layout
+
+\begin_layout Subsection
+Smoothed Regime Change
+\end_layout
+
+\begin_layout Standard
+A possible method of smoothing the vortex velocity transition is to use a cubic function to match the value and slope of the original function on either side of the transition,
+ as shown in Figure
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Smoothed-velocity-transition"
+nolink "false"
+
+\end_inset
+
+) and seen below:
+\begin_inset Formula 
+\begin{align}
+f\left(x\right) & =\sum_{n=0}^{3}\left[c_{n}x^{n}\right]\\
+f^{\prime}\left(x\right) & =\sum_{n=1}^{3}\left[nc_{n}x^{n-1}\right]
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement document
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset External
+	template TikZ
+	filename ../../Build/Plots/Basics/Analytical/Function-VecMag.pgf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sharp velocity transition as defined by 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:Vortex-theta"
+plural "false"
+caps "true"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+,
+ as well as a smoothed variant.
+ Construction of such a smoothed profile is left as a potential investigation topic.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Smoothed-velocity-transition"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,61 @@
+\begin{tikzpicture}
+[
+    xscale=1.12,
+    yscale=0.6,
+    Lnode/.style={
+		text=white,
+		font={\sffamily\bfseries}
+		},
+    Cnode/.style={
+		midway,
+		text=white,
+		font={\sffamily\bfseries},
+		text width=1.9cm,
+		align=center
+		},
+]
+\usetikzlibrary{calc}
+
+% Labels
+\fill[white] (-0.25,0) rectangle (10.25,-11);
+
+\fill[C0d] (-1.75,0.5) rectangle ++(12.25,1);
+\node[Lnode,anchor=east] at (-0.25,1) {Time};
+
+\foreach \x/\display in
+{1/Monday,3/Tuesday,5/Wednesday,7/Thursday,9/Friday}
+{\node[Lnode] at (\x,1) {\display};}
+
+\foreach \y/\display in
+{0/8AM,-1/9AM,-2/10AM,-3/11AM,-4/Noon,-5/1PM,-6/2PM,-7/3PM,-8/4PM,-9/5PM,-10/6PM,-11/7PM}
+{
+	\draw[line width=0.75pt]
+	(-0.25,\y) node[left,font={\sffamily\itshape}] {\display}
+	-- (10.25,\y);
+}
+
+% TSL
+\fill[C1l] (0*2,-2cm-1pt) rectangle ++(2,-2cm+2pt) node[Cnode] {ME4720};
+\fill[C1l] (2*2,-2cm-1pt) rectangle ++(2,-2cm+2pt) node[Cnode] {ME4720};
+
+% CME
+\fill[C2l] (0*2,-5cm-1pt) rectangle ++(2,-1cm+2pt) node[Cnode] {ME4750};
+\fill[C2l] (2*2,-5cm-1pt) rectangle ++(2,-1cm+2pt) node[Cnode] {ME4750};
+\fill[C2l] (4*2,-5cm-1pt) rectangle ++(2,-1cm+2pt) node[Cnode] {ME4750};
+
+% Office Hours
+\fill[C0l] (0*2,-0cm-1pt) rectangle ++(2,-2cm+2pt) node[Cnode] {Office  Hours};
+\fill[C0l] (2*2,-0cm-1pt) rectangle ++(2,-2cm+2pt) node[Cnode] {Office  Hours};
+\fill[C0l] (4*2,-6cm-1pt) rectangle ++(2,-2cm+2pt) node[Cnode] {Office  Hours};
+
+\fill[C0l] (1*2,-9cm-1pt) rectangle ++(2,-2cm+2pt) node[Cnode] {Zoom  Hours};
+\fill[C0l] (3*2,-9cm-1pt) rectangle ++(2,-2cm+2pt) node[Cnode] {Zoom  Hours};
+
+% Meetings
+\fill[C7l] (0*2,-4cm-1pt) rectangle ++(10,-1cm+2pt) node[Cnode] {Meetings};
+
+% \fill[C7l] (0*2,-9cm-1pt) rectangle ++(10,-1cm+2pt) node[Cnode] {Dinner};
+
+% Research
+\fill[C3l] (4*2,-0cm-1pt) rectangle ++(2,-4cm+2pt) node[Cnode] {Research};
+\end{tikzpicture}

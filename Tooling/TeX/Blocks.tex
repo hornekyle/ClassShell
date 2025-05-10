@@ -1,0 +1,722 @@
+\RequirePackage{tcolorbox}
+\tcbuselibrary{hooks}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{calc}
+\usetikzlibrary{tikzmark}
+\tcbpatcharcangular
+
+\RequirePackage{calc}
+\RequirePackage{pgffor}
+
+\tcbset{
+	CMEBlockStyle/.style={
+		enhanced,boxsep=0pt,
+		toptitle=5pt,bottomtitle=5pt,titlerule=3pt,
+		leftrule=3pt,toprule=3pt,bottomrule=3pt,rightrule=3pt,
+		left=5pt,top=5pt,bottom=5pt,right=5pt,
+		frame code={
+			\fill[tcbcolbacktitle]
+				(frame.north west) -- ([shift={(-1em,0)}]frame.north east) -- (frame.east|-title.south) -- (frame.west|-title.south) -- cycle;
+			\fill[tcbcolframe]
+				(frame.south west) -- (frame.north west) -- (frame.north) -- ([shift={(1em,0)}]frame.north|-title.south) -- (frame.east|-title.south) -- (frame.south east) -- cycle;
+			\fill[tcbcolback] (interior.south west) rectangle (interior.north east);
+		},
+		fonttitle={\normalsize\sffamily\bfseries\color{white}},
+		subtitle style={
+			toprule=0ex,bottomrule=0ex,
+			left=1ex,top=1ex,bottom=1ex,right=1ex,
+			colback=tcbcolframe,
+		},
+		before title={},
+		title code={},
+		interior code={},
+		before upper={},
+		after upper={},
+		segmentation code={
+			\draw[tcbcolframe,line width=2pt]
+				([shift={(1em,0)}]segmentation.west) -- ([shift={(-1em,0)}]segmentation.east);
+		},
+	}
+}
+
+\newtcolorbox{CMEBlock}[1][]{
+	CMEBlockStyle,title={#1},
+	colframe=C7,colbacktitle=C7l,colback=C7l!25!white,
+}
+
+%===============%
+%== Title Box ==%
+%===============%
+
+\newtcolorbox{CMETitleBox}[4]{
+	enhanced,
+	boxsep=0ex,
+	leftrule=3pt,toprule=1pt,bottomrule=2pt,rightrule=3pt,
+	left=3pt,top=2ex,bottom=2ex,right=0ex,
+	frame code={
+		\draw[C0d,line width=1pt] (frame.north west) -- (frame.north east);
+		\draw[C0d,line width=1pt] (frame.south west) -- (frame.south east);
+	},
+	title code={},
+	interior code={
+		\node[anchor=east] (institution) at (interior.east) {\sffamily\large#2};
+		\node[anchor=south east] (date) at ([shift={(-1ex,0)}]institution.west|-interior.south) {\sffamily\large#3};
+		\node[anchor=north east] (author) at ([shift={(-1ex,-2pt)}]institution.west|-interior.north) {\sffamily\large#4};
+		\node[anchor=south west] (subtitle) at (interior.south west) {\sffamily\itshape\large#1};
+		\draw[C1,line width=2pt]
+			([shift={(2pt, 4pt)}]date.east|-interior.south) --
+			([shift={(2pt,-4pt)}]date.east|-interior.north);
+	},
+	before upper={\sffamily\LARGE\bfseries},
+	after upper={\par\vspace{1ex}},
+	% 1:subtitle 2:institution 3:date 4:author
+}
+
+%===================%
+%== Heading Boxes ==%
+%===================%
+
+\tcbset{
+	CMEHeaderStyle/.style={
+		enhanced,
+		boxsep=0ex,
+		leftrule=0ex,toprule=0ex,bottomrule=0ex,rightrule=0ex,
+		left=0ex,top=0ex,bottom=0ex,right=0ex,
+		frame code={},
+		title code={},
+		interior code={},
+		before upper={},
+		after upper={},
+	}
+}
+
+\newtcolorbox{CMESectionHeader}[1][]{
+	CMEHeaderStyle,
+	before upper={\sffamily\Large\bfseries\color{C0d}#1\color{black}\hspace{1em}},
+}
+
+\newtcolorbox{CMESubsectionHeader}[1][]{
+	CMEHeaderStyle,
+	before upper={\sffamily\large\itshape\bfseries\color{C0d}#1\color{black}\hspace{1em}},
+}
+
+\newtcolorbox{CMESubsubsectionHeader}[1][]{
+	CMEHeaderStyle,
+	before upper={\sffamily\normalsize\bfseries\color{C0d}#1\color{black}\hspace{1em}},
+}
+
+%==================%
+%== Legend Boxes ==%
+%==================%
+
+\tcbset{
+	CMELegendStyle/.style={
+		empty,
+		boxsep=0ex,
+		leftrule=2pt,toprule=0ex,bottomrule=0ex,rightrule=2pt,
+		left=1ex,top=4pt,bottom=8pt,right=0ex,middle=0ex,
+		toptitle=6pt,bottomtitle=5pt,
+		frame code={
+			\fill[tcbcolback] (interior.south west) rectangle (title.north east);
+			\draw[tcbcolframe,line width=2pt] (frame.north west) -- (frame.north east);
+			\draw[tcbcolframe,line width=2pt] (frame.south west) -- (frame.south east);
+			\draw[tcbcolframe,line width=2pt]
+				(frame.south west|-title.south) -- (frame.south east|-title.south);
+		},
+		fonttitle={\sffamily\large\bfseries},
+		title code={},
+		interior code={},
+		interior titled code={},
+		before upper={},
+		after upper={},
+	},
+	CMELegendSubtitleStyle/.style={
+		empty,
+		boxsep=0ex,
+		top=0ex,bottom=0ex,
+		frame code={
+			\draw[tcbcolframe,line width=2pt]
+				([shift={(1ex,0)}]frame.west) -- ([shift={(-1ex,0)}]frame.east);
+		},
+		title code={},
+		interior code={},
+		before upper={},
+		after upper={},
+	},
+}
+
+\newtcolorbox{CMELegend}[1]{
+	CMELegendStyle,title={#1},floatplacement=t,float,
+	coltitle=C5,colframe=C5,colbacktitle=parchment,colback=parchment,
+}
+
+%====================%
+%== Example Blocks ==%
+%====================%
+
+\tcbset{
+	CMEExampleStyle/.style={
+		empty,
+		boxsep=0ex,
+		toptitle=5pt,bottomtitle=5pt,titlerule=3pt,
+		leftrule=3pt,toprule=3pt,bottomrule=3pt,rightrule=3pt,
+		left=5pt,top=5pt,bottom=5pt,right=5pt,
+		fonttitle={\normalsize\sffamily\bfseries\color{white}},
+		before title={\hspace{13.5em}},
+		frame code={
+			\fill[tcbcolframe] (frame.north west) --
+				([shift={(-1em,0)}]frame.north east) -- (frame.north east|-title.south east) --
+				(frame.south east) -- (frame.south west) -- cycle;
+			\fill[tcbcolbacktitle]
+				(frame.west|-title.south) -- ([shift={(12em,0)}]frame.west|-title.south) --
+				([shift={(13em,0)}]frame.west|-frame.north) -- (frame.north west) --
+				cycle;
+			\fill[tcbcolback]
+				(interior.south west) rectangle (interior.north east);
+		},
+		interior code={},
+		segmentation code={
+			\draw[tcbcolframe,line width=2pt]
+				([shift={(1em,0)}]segmentation.west) -- ([shift={(-1em,0)}]segmentation.east);
+		},
+		subtitle style={
+			toprule=0ex,bottomrule=0ex,
+			left=1ex,top=1ex,bottom=1ex,right=1ex,
+		},
+		before upper={},
+		after upper={},
+		before lower={},
+		after lower={},
+	}
+}
+
+\newtcolorbox[auto counter,number within=section,list inside=ExampleActivity]{CMEExampleActivity}[1][]{
+	CMEExampleStyle,title={#1},
+	colframe=C1,colbacktitle=C1l,colback=C1l!25!white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/activity}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Activity\enspace\thetcbcounter};
+	},
+}
+
+\newtcolorbox[auto counter,number within=section,list inside=ExampleCode]{CMEExampleCode}[1][]{
+	CMEExampleStyle,title={#1},
+	colframe=C0,colbacktitle=C0l,colback=white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/code}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Code Example\enspace\thetcbcounter};
+	},
+	segmentation code={
+		\draw[tcbcolframe,line width=3pt]
+			(segmentation.west) -- (segmentation.east);
+	},
+	before lower={\sffamily\bfseries{}Output\normalfont\par},
+}
+
+\newtcolorbox[auto counter,number within=section,list inside=ExampleMath]{CMEExampleMath}[1][]{
+	CMEExampleStyle,title={#1},
+	colframe=C2,colbacktitle=C2l,colback=C2l!25!white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/example}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Math Example\enspace\thetcbcounter};
+	},
+}
+
+%=====================%
+%== Activity Blocks ==%
+%=====================%
+
+\tcbset{
+	CMEActivityStyle/.style={
+		enhanced,
+		leftrule=0ex,toprule=0ex,bottomrule=0ex,rightrule=0ex,
+		left=0ex,top=0ex,bottom=0ex,right=0ex,
+		frame code={},
+		title code={},
+		interior code={},
+		before upper={},
+		after upper={},
+	}
+}
+
+\newtcolorbox{CMEActivity}[1][]{
+	CMEActivityStyle,
+}
+
+%=========================%
+%== Notes and Questions ==%
+%=========================%
+
+\tcbset{
+	CMEFormStyle/.style={
+		empty,
+		boxsep=0ex,
+		toptitle=5pt,bottomtitle=5pt,titlerule=3pt,
+		leftrule=3pt,toprule=3pt,bottomrule=3pt,rightrule=3pt,
+		left=5pt,top=5pt,bottom=5pt,right=5pt,
+		fonttitle={\normalsize\sffamily\bfseries\color{white}},
+		before title={\hspace{13.5em}},
+		frame code={
+			\fill[tcbcolframe] (frame.north west) --
+				([shift={(-1em,0)}]frame.north east) -- (frame.north east|-title.south east) --
+				(frame.south east) -- (frame.south west) -- cycle;
+			\fill[tcbcolbacktitle]
+				(frame.west|-title.south) -- ([shift={(12em,0)}]frame.west|-title.south) --
+				([shift={(13em,0)}]frame.west|-frame.north) -- (frame.north west) --
+				cycle;
+			\fill[tcbcolback]
+				(interior.south west) rectangle (interior.north east);
+		},
+		interior code={},
+		segmentation code={
+			\draw[tcbcolframe,line width=2pt]
+				([shift={(1em,0)}]segmentation.west) -- ([shift={(-1em,0)}]segmentation.east);
+		},
+		subtitle style={
+			toprule=0ex,bottomrule=0ex,
+			left=1ex,top=1ex,bottom=1ex,right=1ex,
+		},
+		before upper={},
+		after upper={},
+		before lower={},
+		after lower={},
+	}
+}
+
+\newtcolorbox[auto counter,number within=section,list inside=Notes]{CMENotes}[2]{
+	CMEFormStyle,title={#2},
+	colframe=C7,colbacktitle=C7l,colback=C7l!25!white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/notes}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Notes\enspace\thetcbcounter};
+	},
+	after upper={
+		\par
+		\TextField[name={Notes-\thetcbcounter},multiline,width={\linewidth},height={#1},bordercolor=tcbcolframe!15,borderwidth=2pt,value={}]{}
+	},
+}
+
+\newcommand{\TimeField}[1]{%
+	\TextField[name={#1},width=1.35in,height={0.5\baselineskip},bordercolor=tcbcolframe!15,borderwidth=2pt,value={}]{}
+}
+
+\newtcolorbox[auto counter,number within=section,list inside=BoardNotes]{CMEBoardNote}[1]{
+	CMEFormStyle,title={#1},middle=3pt,
+	colframe=C8,colbacktitle=C8l,colback=C8l!25!white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/notes}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Describe Note\enspace\thetcbcounter};
+	},
+	segmentation code={},
+	subtitle style={
+		toprule=0ex,bottomrule=0ex,
+		left=1ex,top=1ex,bottom=1ex,right=1ex,
+		colback=tcbcolframe,
+	},
+	after upper={
+		\par
+		\TextField[name={BoardNoteUpper #1},multiline,width={\linewidth},height=1.75in,bordercolor=tcbcolframe!15,borderwidth=2pt,value={}]{}
+	},
+	after lower={
+		\par
+		\TextField[name={BoardNoteLower #1},multiline,width={\linewidth},height=2.75in,bordercolor=tcbcolframe!15,borderwidth=2pt,value={}]{}
+	},
+}
+
+\newtcolorbox[auto counter,number within=section,list inside=DescribeNotes]{CMEDescribeNote}[1]{
+	CMEFormStyle,title={#1},middle=3pt,
+	colframe=C9,colbacktitle=C9l,colback=C9l!25!white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/describe}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Describe Note\enspace\thetcbcounter};
+	},
+	segmentation code={},
+	subtitle style={
+		toprule=0ex,bottomrule=0ex,
+		left=1ex,top=1ex,bottom=1ex,right=1ex,
+		colback=tcbcolframe,
+	},
+	after upper={
+		\par
+		\TextField[name={DescribeNoteUpper #1},multiline,width={\linewidth},height=1.75in,bordercolor=tcbcolframe!15,borderwidth=2pt,value={<Explain the objective in your own words and identify at least one application.>}]{}
+	},
+	after lower={
+		\par
+		\TextField[name={DescribeNoteLower #1},multiline,width={\linewidth},height=2.75in,bordercolor=tcbcolframe!15,borderwidth=2pt,value={<Explain the significance of this objective as include how it connects with other concepts, practices, or fields as part of this discussion.>}]{}
+	},
+}
+
+\newtcolorbox[auto counter,list inside=Question]{CMEQuestion}[3]{
+	CMEFormStyle,title={#3},
+	colframe=C4,colbacktitle=C4l,colback=C4l!25!white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/question}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Question\enspace\thetcbcounter};
+	},
+	after lower={
+		\par
+		\foreach \n in {1,...,#1}{
+			\TextField[name={Question-\thetcbcounter.\n},multiline,width={\linewidth},height={#2},bordercolor=tcbcolframe!15,borderwidth=2pt,value={}]{}
+		}
+	},
+}
+
+%=============================================%
+%== Deliverable, Rubric, and Problem Blocks ==%
+%=============================================%
+
+\tcbset{
+	CMEDeliverableStyle/.style={
+		empty,height from=7em to 7in,
+		leftrule=4ex,toprule=0ex,bottomrule=3pt,rightrule=3pt,
+		toptitle=5pt,bottomtitle=0pt,titlerule=3pt,
+		left=5pt,top=5pt,bottom=5pt,right=5pt,
+		frame code={
+			\fill[tcbcolbacktitle] (frame.south west) rectangle ([shift={(1em,0)}]interior.west|-frame.north);
+			
+			\fill[tcbcolframe]
+				(frame.south east) -- (interior.west|-frame.south) -- 
+				(interior.west|-title.south) -- ([shift={(1em,0)}]interior.west|-frame.north) --
+				([shift={(-1em,0)}]frame.north east) -- (frame.east|-title.south) -- cycle;
+			
+			\fill[tcbcolback] ([shift={(3pt,0)}]interior.south west) rectangle (interior.north east);
+		},
+		fonttitle={\normalsize\sffamily\bfseries\color{white}},
+		before title={\hspace{1em}},
+		interior code={},
+		segmentation code={
+			\draw[tcbcolframe,line width=2pt]
+				([shift={(1em,0)}]segmentation.west) -- ([shift={(-1em,0)}]segmentation.east);
+		},
+		subtitle style={
+			colback=tcbcolframe,top=2pt,
+		},
+		before upper={},
+		after upper={},
+	}
+}
+
+\newtcolorbox[auto counter,list inside=Results]{CMEDeliverable}[1][]{
+	CMEDeliverableStyle,title={#1},
+	colframe=C2,colbacktitle=C2l,colback=C2l!25!white,
+	title code={
+		\node[anchor=north west] (icon) at (frame.north west)
+			{\includegraphics[width=1.25em]{../../Tooling/Icons/deliverable}};
+		\node[above=0.75ex,anchor=west,rotate=90] at (frame.south-|icon)
+			{\normalsize\sffamily\bfseries\color{black}Result\enspace\thetcbcounter};
+	},
+}
+
+\newtcolorbox[auto counter,list inside=Bonus]{CMEDeliverableBonus}[1][]{
+	CMEDeliverableStyle,title={#1},
+	colframe=C8,colbacktitle=C8l,colback=C8l!25!white,
+	title code={
+		\node[anchor=north west] (icon) at (frame.north west)
+			{\includegraphics[width=1.25em]{../../Tooling/Icons/bonus}};
+		\node[above=0.75ex,anchor=west,rotate=90] at (frame.south-|icon)
+			{\normalsize\sffamily\bfseries\color{black}Bonus\enspace\thetcbcounter};
+	},
+}
+
+\newcommand{\CriterionPoints}[1]{{\sffamily\bfseries\color{C3d}#1}}
+\newtcolorbox[auto counter,list inside=RubricCriterion]{CMERubricCriterion}[1][]{
+	CMEDeliverableStyle,title={#1},
+	colframe=C3,colbacktitle=C3l,colback=C3l!25!white,
+	title code={
+		\node[anchor=north west] (icon) at (frame.north west)
+			{\includegraphics[width=1.25em]{../../Tooling/Icons/criterion}};
+		\node[above=0.75ex,anchor=west,rotate=90] at (frame.south-|icon)
+			{\normalsize\sffamily\bfseries\color{black}Criterion\enspace\thetcbcounter};
+	},
+}
+
+\newtcolorbox[auto counter,list inside=Problem]{CMEProblem}[1][]{
+	CMEDeliverableStyle,height from=1.2in to 7in,
+	leftrule=4ex,toprule=3pt,bottomrule=3pt,rightrule=3pt,
+	left=5pt,top=5pt,bottom=5pt,right=5pt,
+	colframe=C1,colbacktitle=C1l,colback=C1l!25!white,
+	frame code={
+		\fill[tcbcolframe] (interior.west|-frame.south) rectangle (frame.north east);
+		\fill[tcbcolbacktitle] (frame.north west) -- (interior.west|-frame.north) --
+			(interior.west|-frame.south) -- ([shift={(0ex,1em)}]frame.south west) -- cycle;
+		\fill[tcbcolback] ([shift={(3pt,0)}]interior.south west) rectangle (interior.north east);
+		\node[anchor=north west] (icon) at (frame.north west)
+			{\includegraphics[width=1.25em]{../../Tooling/Icons/problem}};
+		\node[above=2ex,anchor=west,rotate=90] at (frame.south-|icon)
+			{\normalsize\sffamily\bfseries\color{black}Problem\enspace\thetcbcounter};
+	},
+}
+
+%=======================%
+%== Float definitions ==%
+%=======================%
+
+\newtcolorbox{CMEFigureBox}{
+	empty,boxsep=0ex,
+	leftrule=2pt,toprule=1.5pt,bottomrule=1.5pt,rightrule=2pt,
+	left=0in,top=5pt,bottom=5pt,right=0pt,
+	middle=1em,
+	colframe=C0d,colbacktitle=C0l,colback=C0l!50,
+	frame code={
+		\fill[parchment] (interior.south west) rectangle (interior.north east);
+		\draw[tcbcolframe,line width=3pt] (frame.north west) -- (frame.north east);
+		\draw[tcbcolframe,line width=3pt] (frame.south west) -- (frame.south east);
+	},
+	segmentation code={
+		\draw[tcbcolframe,line width=2pt]
+			(frame.west|-segmentation.west) -- (frame.east|-segmentation.east);
+	},
+}
+
+\newtcolorbox{CMETableBox}{
+	empty,boxsep=0ex,
+	leftrule=2pt,toprule=1.5pt,bottomrule=1.5pt,rightrule=2pt,
+	left=0in,top=12pt,bottom=0pt,right=0pt,
+	middle=1pt,
+	colframe=C0d,colbacktitle=C0l,colback=C0l!50,
+	frame code={
+		\fill[parchment] (interior.south west) rectangle (interior.north east);
+		\draw[tcbcolframe,line width=3pt] (frame.north west) -- (frame.north east);
+		\draw[tcbcolframe,line width=3pt] (frame.south west) -- (frame.south east);
+	},
+	segmentation code={
+		\draw[tcbcolframe,line width=2pt]
+			(frame.west|-segmentation.west) -- (frame.east|-segmentation.east);
+	},
+	before upper={
+		\renewcommand{\arraystretch}{1.4}
+		\colorlet{TH}{tcbcolframe}
+		\rowcolors{1}{tcbcolbacktitle}{tcbcolback}
+	},
+	before lower={
+		\renewcommand{\arraystretch}{1.4}
+		\rowcolors{1}{tcbcolbacktitle}{tcbcolback}
+	},
+	subtitle style={
+		toprule=0ex,bottomrule=0ex,
+		left=3pt,top=1ex,bottom=1ex,right=3pt,
+		colback=parchment!50!black,
+		fontupper={\sffamily\color{white}\bfseries}
+	},
+}
+
+\newtcolorbox{CMEAlgorithmBox}{
+	empty,boxsep=0ex,
+	leftrule=2pt,toprule=1.5pt,bottomrule=1.5pt,rightrule=2pt,
+	left=0pt,top=12pt,bottom=6pt,right=0pt,
+	middle=1pt,
+	colframe=C0d,colbacktitle=C0l,colback=C0l!50,
+	frame code={
+		\fill[parchment] (interior.south west) rectangle (interior.north east);
+		\draw[tcbcolframe,line width=3pt] (frame.north west) -- (frame.north east);
+		\draw[tcbcolframe,line width=3pt] (frame.south west) -- (frame.south east);
+	},
+	segmentation code={
+		\draw[tcbcolframe,line width=2pt]
+			(frame.west|-segmentation.west) -- (frame.east|-segmentation.east);
+	},
+	before upper={
+		\renewcommand{\arraystretch}{1.4}
+		\colorlet{TH}{tcbcolframe}
+		\rowcolors{1}{tcbcolbacktitle}{tcbcolback}
+	},
+	before lower={
+		\renewcommand{\arraystretch}{1.4}
+		\rowcolors{1}{tcbcolbacktitle}{tcbcolback}
+	},
+	subtitle style={
+		toprule=0ex,bottomrule=0ex,
+		left=3pt,top=1ex,bottom=1ex,right=3pt,
+		colback=parchment!50!black,
+		fontupper={\sffamily\color{white}\bfseries}
+	},
+}
+
+%=====================%
+%== Function Blocks ==%
+%=====================%
+
+\tcbset{
+	CMEFunctionStyle/.style={
+		empty,
+		boxsep=0ex,
+		toptitle=5pt,bottomtitle=5pt,titlerule=3pt,
+		leftrule=3pt,toprule=3pt,bottomrule=3pt,rightrule=3pt,
+		left=5pt,top=5pt,bottom=5pt,right=5pt,
+		fonttitle={\normalsize\sffamily\bfseries\color{white}},
+		before title={\hspace{13.5em}},
+		frame code={
+			\fill[tcbcolframe] (frame.north west) --
+				([shift={(-1em,0)}]frame.north east) -- (frame.north east|-title.south east) --
+				(frame.south east) -- (frame.south west) -- cycle;
+			\fill[tcbcolbacktitle]
+				(frame.west|-title.south) -- ([shift={(12em,0)}]frame.west|-title.south) --
+				([shift={(13em,0)}]frame.west|-frame.north) -- (frame.north west) --
+				cycle;
+			\fill[tcbcolback]
+				(interior.south west) rectangle (interior.north east);
+		},
+		interior code={},
+		segmentation code={
+			\draw[tcbcolframe,line width=2pt]
+				([shift={(1em,0)}]segmentation.west) -- ([shift={(-1em,0)}]segmentation.east);
+		},
+		subtitle style={
+			toprule=0ex,bottomrule=0ex,
+			left=1ex,top=1ex,bottom=1ex,right=1ex,
+		},
+		before upper={},
+		after upper={},
+		before lower={},
+		after lower={},
+	}
+}
+
+\newtcolorbox[auto counter,number within=section,list inside=FunctionInterface]{CMEFunctionInterface}[1][]{
+	CMEFunctionStyle,title={#1},
+	colframe=C9d,colbacktitle=C9l,colback=C9l!25!white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/code}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Interface\enspace\thetcbcounter};
+	},
+}
+
+\newtcolorbox[auto counter,number within=section,list inside=FunctionImplementation]{CMEFunctionImplementation}[1][]{
+	CMEFunctionStyle,title={#1},
+	colframe=C4,colbacktitle=C4l,colback=C4l!25!white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/code}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Function\enspace\thetcbcounter};
+	},
+}
+
+\newtcolorbox[auto counter,number within=section,list inside=SolutionListing]{CMESolutionListing}[1]{
+	CMEFunctionStyle,breakable,title={#1},
+	colframe=C0,colbacktitle=C0l,colback=C0l!25!white,
+	title code={
+		\node[anchor=west] (icon) at (title.west)
+			{\includegraphics[width=1.5em]{../../Tooling/Icons/code}};
+		\node[right] at (icon.east)
+			{\normalsize\sffamily\bfseries\color{black}Solution\enspace\thetcbcounter};
+	},
+	before upper={},
+	after upper={},
+	before lower={\sffamily\bfseries{}Output\normalfont\par},
+	after lower={},
+	skin first is subskin of={empty}{
+		CMEFunctionStyle,
+		title code={
+			\node[anchor=west] (icon) at (title.west)
+				{\includegraphics[width=1.5em]{../../Tooling/Icons/code}};
+			\node[right] at (icon.east)
+				{\normalsize\sffamily\bfseries\color{black}Solution\enspace\thetcbcounter};
+		},
+		frame code={
+			\fill[tcbcolframe] (frame.north west) --
+				([shift={(-1em,0)}]frame.north east) -- (frame.north east|-title.south east) --
+				(frame.south east) -- (frame.south west) -- cycle;
+			\fill[tcbcolbacktitle]
+				(frame.west|-title.south) -- ([shift={(12em,0)}]frame.west|-title.south) --
+				([shift={(13em,0)}]frame.west|-frame.north) -- (frame.north west) --
+				cycle;
+			\fill[tcbcolback]
+				(interior.west|-frame.south) rectangle (interior.north east);
+		},
+	},
+	skin middle is subskin of={empty}{
+		CMEFunctionStyle,
+		frame code={
+			\fill[tcbcolframe]
+				(frame.south west) rectangle (frame.north east);
+			\fill[tcbcolback]
+				(interior.west|-frame.south) rectangle (interior.east|-frame.north);
+		},
+	},
+	skin last is subskin of={empty}{
+		CMEFunctionStyle,
+		frame code={
+			\fill[tcbcolframe]
+				(frame.south west) rectangle (frame.north east);
+			\fill[tcbcolback]
+				(interior.south west) rectangle (interior.east|-frame.north);
+		},
+	},
+}
+
+%==========================================%
+%== Recommendation, Hint and Alert Boxes ==%
+%==========================================%
+
+\tcbset{
+	CMEInterjectionStyle/.style={
+		empty,
+		height from=2em to 7in,
+		toptitle=0ex,bottomtitle=0ex,
+		leftrule=3pt,toprule=2pt,bottomrule=2pt,rightrule=3pt,
+		left=0.5in,top=3pt,bottom=1pt,right=2pt,
+		title code={},
+		frame code={
+			\fill[tcbcolframe!25]
+				([shift={(0ex,-1ex)}]frame.north west) -- ([shift={(1ex,0ex)}]frame.north west) --
+				(frame.north east) -- ([shift={(0ex,1ex)}]frame.south east) --
+				([shift={(-1ex,0ex)}]frame.south east) -- (frame.south west) -- cycle;
+		},
+		interior code={},
+		segmentation code={},
+		before upper={\normalsize\sffamily\itshape\bfseries\color{tcbcolbacktitle}},
+		after upper={},
+		before lower={},
+		after lower={},
+	}
+}
+
+% Recommendation
+\newtcolorbox{CMERecommendationBox}{
+	CMEInterjectionStyle,
+	colframe=C7,colbacktitle=C5,
+	frame code app={
+		\node[anchor=west] at (interior.west)
+			{\includegraphics[width=5ex]{../../Tooling/Icons/recommendation}};
+	},
+}
+
+% Hint
+\newtcolorbox{CMEHintBox}{
+	CMEInterjectionStyle,
+	colframe=C7,colbacktitle=C0,
+	frame code app={
+		\node[anchor=west] at (interior.west)
+			{\includegraphics[width=5ex]{../../Tooling/Icons/hint}};
+	},
+}
+
+% Warning
+\newtcolorbox{CMEAlertBox}{
+	CMEInterjectionStyle,
+	colframe=C7,colbacktitle=C3,
+	frame code app={
+		\node[anchor=west] at (interior.west)
+			{\includegraphics[width=5ex]{../../Tooling/Icons/alert}};
+	},
+}

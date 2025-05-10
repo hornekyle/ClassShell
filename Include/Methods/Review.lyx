@@ -1,0 +1,283 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass paper
+\begin_preamble
+\input{../../Tooling/TeX/Colors}
+\input{../../Tooling/TeX/Page}
+\input{../../Tooling/TeX/Fonts}
+\input{../../Tooling/TeX/Blocks}
+\input{../../Tooling/TeX/Titles}
+\input{../../Tooling/TeX/Lists}
+\input{../../Tooling/TeX/Floats}
+\input{../../Tooling/TeX/Forms}
+\input{../../Tooling/TeX/PythonTeX}
+\input{../../Tooling/TeX/Course}
+\end_preamble
+\use_default_options true
+\begin_modules
+enumitem
+multicol
+CMEparts
+PythonTeX
+\end_modules
+\maintain_unincluded_children no
+\language english
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format PyTeXPDF
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment center
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 2
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "linkcolor=C0,citecolor=C2d,urlcolor=C4"
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 1
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 1
+\math_indentation default
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Analytical Application
+\end_layout
+
+\begin_layout Standard
+Several problems of interest in will be examined,
+ and their solutions plotted to gain familiarity with a chosen language and plotting tools.
+ The first problem is the one-dimensional heat conduction equation with generation,
+ commonly encountered in undergraduate level heat transfer courses,
+ Equation
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Heat-Conduction"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+).
+\begin_inset Formula 
+\begin{align}
+\frac{d}{dx}\left[k\frac{dT}{dx}\right]+q & =0\label{eq:Heat-Conduction}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This equation can be solved directly through repeated integration and the boundary conditions used to define the constants resulting therefrom.
+\end_layout
+
+\begin_layout Standard
+The solution to the first problem is found in Equation
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Heat-Conduction-Solution"
+nolink "false"
+
+\end_inset
+
+) and plotted in Figure
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:One-dimensional-heat-condution"
+nolink "false"
+
+\end_inset
+
+).
+\begin_inset Formula 
+\begin{align}
+T\left(x\right) & =T_{l}+\left[\frac{L^{2}}{2}\frac{q}{k}+\left(T_{r}-T_{l}\right)\right]\left(\frac{x}{L}\right)-\frac{L^{2}}{2}\frac{q}{k}\left(\frac{x}{L}\right)^{2}\label{eq:Heat-Conduction-Solution}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement document
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset External
+	template TikZ
+	filename ../../Build/Plots/Basics/Analytical/Function-1D.pgf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+One-dimensional heat conduction as computed from the analytical model found in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:Heat-Conduction-Solution"
+plural "false"
+caps "true"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+ using appropriate boundary conditions.
+ Observe the quadratic shape of the solution,
+ which is produced both directly from the analytical solution.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:One-dimensional-heat-condution"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The values of 
+\begin_inset Formula $T_{l}$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{r}$
+\end_inset
+
+ are the left and right boundary temperatures for the domain,
+ where left is 
+\begin_inset Formula $x=0$
+\end_inset
+
+ and right is 
+\begin_inset Formula $x=L$
+\end_inset
+
+.
+ This expression should easily be implemented as a function taking a single real value for 
+\begin_inset Formula $x$
+\end_inset
+
+ as its only argument and returning a single real value for the 
+\begin_inset Formula $T$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document

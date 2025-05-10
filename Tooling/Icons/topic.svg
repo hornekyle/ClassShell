@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 656 656"
+   data-name="Layer 2"
+   id="Layer_2"
+   version="1.1"
+   sodipodi:docname="topics.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.77"
+     inkscape:cx="185.55957"
+     inkscape:cy="150.72202"
+     inkscape:window-width="2490"
+     inkscape:window-height="1406"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_2" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-1{fill:#67baeb;}.cls-2{fill:#46a1f8;}.cls-3{fill:#605c85;}.cls-4{fill:#7c79ab;}.cls-5{fill:#4d4c78;}.cls-6{fill:#8784ba;}.cls-7{fill:#83d0fb;}.cls-8{fill:#8986bd;}</style>
+  </defs>
+  <title
+     id="title1" />
+  <g
+     id="g14"
+     transform="matrix(0.37879389,0,0,0.37879389,-49.083027,-60.26137)">
+    <path
+       class="cls-1"
+       d="m 599.2839,831.42623 997.9211,-576.15 152.8,264.65736 -997.9211,576.15001 a 53.1,53.1 0 0 1 -72.48595,-19.3494 l -99.75,-172.77202 a 53.1,53.1 0 0 1 19.43595,-72.53595 z"
+       id="path1" />
+    <path
+       class="cls-2"
+       d="m 791.4,991 a 53,53 0 0 1 -72.5,-19.4 l -90.6,-156.9 -29,16.7 a 53,53 0 0 0 -19.4,72.5 l 99.7,172.7 a 53.1,53.1 0 0 0 72.5,19.5 L 1750,519.9 1714.4,458.1 Z"
+       id="path2" />
+    <rect
+       class="cls-1"
+       height="305.60999"
+       rx="11.4"
+       ry="11.4"
+       transform="rotate(-30)"
+       width="76"
+       x="-375.68881"
+       y="1019.6708"
+       id="rect2" />
+    <path
+       class="cls-2"
+       d="M 397.3,1287.7 255.9,1042.9 a 11.3,11.3 0 0 0 -15.6,-4.2 l -12.5,7.2 126.2,218.6 a 11.4,11.4 0 0 1 -4.2,15.6 l -33.5,19.3 15.2,26.3 a 11.5,11.5 0 0 0 15.6,4.2 l 46,-26.6 a 11.3,11.3 0 0 0 4.2,-15.6 z"
+       id="path3" />
+    <rect
+       class="cls-3"
+       height="188.24001"
+       transform="rotate(-30)"
+       width="350"
+       x="-299.73886"
+       y="1078.4208"
+       id="rect3" />
+    <path
+       class="cls-4"
+       d="m 308.4,1067.2 42.6,73.9 a 40,40 0 0 0 54.5,14.6 l 165.6,-95.6 a 39.9,39.9 0 0 0 14.6,-54.5 L 543,931.7 Z"
+       id="path4" />
+    <rect
+       class="cls-4"
+       height="428.12"
+       rx="22.700001"
+       ry="22.700001"
+       transform="rotate(-30)"
+       width="102.8"
+       x="1255.6085"
+       y="958.40466"
+       id="rect4" />
+    <path
+       class="cls-3"
+       d="m 1858.3,501.9 -43.5,-75.3 -45.1,26 a 22.7,22.7 0 0 1 -31.1,-8.3 l -147.8,-256.1 -4.5,2.7 a 22.6,22.6 0 0 0 -8.3,31 l 191.3,331.4 a 22.6,22.6 0 0 0 31,8.3 l 49.7,-28.7 a 22.6,22.6 0 0 0 8.3,-31 z"
+       id="path5" />
+    <polygon
+       class="cls-5"
+       points="1567.3,625.4 1602,605.4 1449.2,340.8 1414.5,360.8 "
+       id="polygon5" />
+    <rect
+       class="cls-4"
+       height="1048.13"
+       width="76.900002"
+       x="1027.1"
+       y="842.70001"
+       id="rect5" />
+    <polygon
+       class="cls-4"
+       points="951.3,842.7 1028.2,842.7 738.9,1890.9 661.9,1890.9 "
+       id="polygon6" />
+    <polygon
+       class="cls-4"
+       points="1179.8,842.7 1102.9,842.7 1392.2,1890.9 1469.1,1890.9 "
+       id="polygon7" />
+    <path
+       class="cls-3"
+       d="m 1102.9,842.7 h -74.7 l -1.1,4.1 v 195.7 a 207.1,207.1 0 0 0 76.9,0 V 846.8 Z"
+       id="path7" />
+    <path
+       class="cls-3"
+       d="m 1027.1,842.7 h -75.8 l -37.4,135.4 a 204.7,204.7 0 0 0 63.7,48 l 49.5,-179.3 z"
+       id="path8" />
+    <polygon
+       class="cls-4"
+       points="1028.2,842.7 1027.1,842.7 1027.1,846.8 "
+       id="polygon8" />
+    <path
+       class="cls-3"
+       d="m 1104,842.7 v 4.1 l 49.5,179.3 a 204.7,204.7 0 0 0 63.7,-48 l -37.4,-135.4 z"
+       id="path9" />
+    <polygon
+       class="cls-4"
+       points="1104,846.8 1104,842.7 1102.9,842.7 "
+       id="polygon9" />
+    <circle
+       class="cls-4"
+       cx="1065.5"
+       cy="842.70001"
+       r="155.39999"
+       id="circle9" />
+    <path
+       class="cls-6"
+       d="m 1065.5,687.4 a 155.1,155.1 0 0 0 -114.6,50.4 155.4,155.4 0 0 1 193.7,238.7 155.1,155.1 0 0 0 76.3,-133.8 c 0,-85.8 -69.6,-155.3 -155.4,-155.3 z"
+       id="path10" />
+    <circle
+       class="cls-5"
+       cx="1065.5"
+       cy="842.70001"
+       r="75.800003"
+       id="circle10" />
+    <rect
+       class="cls-7"
+       height="79.70356"
+       rx="39.836731"
+       ry="39.836731"
+       transform="rotate(-29.886527)"
+       width="298.02289"
+       x="698.25409"
+       y="1025.4135"
+       id="rect10"
+       style="stroke-width:1.00344" />
+    <rect
+       class="cls-7"
+       height="58.621201"
+       rx="29.300568"
+       ry="29.300568"
+       transform="rotate(-29.886527)"
+       width="181.52303"
+       x="341.09811"
+       y="1026.3049"
+       id="rect11"
+       style="stroke-width:1.00344" />
+    <rect
+       class="cls-8"
+       height="58.419998"
+       rx="29.200001"
+       ry="29.200001"
+       transform="rotate(-30)"
+       width="180.89999"
+       x="-215.18727"
+       y="1078.8325"
+       id="rect12" />
+    <rect
+       class="cls-7"
+       height="155.49001"
+       rx="12.1"
+       ry="12.1"
+       transform="rotate(-30)"
+       width="24.1"
+       x="-373.41949"
+       y="1054.3058"
+       id="rect13" />
+    <rect
+       class="cls-8"
+       height="186.8"
+       rx="27.4"
+       ry="27.4"
+       transform="rotate(-30)"
+       width="54.799999"
+       x="1300.0951"
+       y="1000.5083"
+       id="rect14" />
+  </g>
+</svg>

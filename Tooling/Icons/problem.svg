@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   version="1.1"
+   id="Layer_1"
+   viewBox="0 0 512 512"
+   xml:space="preserve"
+   sodipodi:docname="problem.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs11">
+	
+	
+</defs><sodipodi:namedview
+   id="namedview11"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="2.28125"
+   inkscape:cx="256"
+   inkscape:cy="256"
+   inkscape:window-width="2560"
+   inkscape:window-height="1406"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<path
+   style="fill:#f4b61a"
+   d="m 256,314.062 c 26.286,0 47.505,21.219 47.505,47.505 0,26.286 -21.219,47.505 -47.505,47.505 -26.286,0 -47.505,-21.219 -47.505,-47.505 0,-26.286 21.219,-47.505 47.505,-47.505 z"
+   id="path1" /><rect
+   x="219.052"
+   y="73.188278"
+   style="fill:#f4b61a;stroke-width:1.08201"
+   width="73.897003"
+   height="203.92574"
+   id="rect1" />
+<path
+   style="fill:#1f77b4"
+   d="M256,55.423c110.74,0,200.577,89.838,200.577,200.577S366.74,456.577,256,456.577  S55.423,366.74,55.423,256S145.26,55.423,256,55.423z M292.948,277.113V102.928h-73.897v174.186H292.948z M303.505,361.567  c0-26.286-21.219-47.505-47.505-47.505c-26.286,0-47.505,21.219-47.505,47.505c0,26.286,21.219,47.505,47.505,47.505  C282.286,409.072,303.505,387.853,303.505,361.567z"
+   id="path2" />
+<path
+   style="fill:#a7a9ac"
+   d="M256,7.918c137.026,0,248.082,111.056,248.082,248.082S393.026,504.082,256,504.082  S7.918,393.026,7.918,256S118.974,7.918,256,7.918z M456.577,256c0-110.74-89.838-200.577-200.577-200.577S55.423,145.26,55.423,256  S145.26,456.577,256,456.577S456.577,366.74,456.577,256z"
+   id="path3" />
+<path
+   style="fill:#125670"
+   d="M55.423,256c0,110.74,89.838,200.577,200.577,200.577v-47.505c-26.286,0-47.505-21.219-47.505-47.505  c0-26.286,21.219-47.505,47.505-47.505v-36.948h-36.948V102.928H256V55.423C145.26,55.423,55.423,145.26,55.423,256z"
+   id="path4" />
+<path
+   style="fill:#7f7f7f"
+   d="M55.423,256C55.423,145.26,145.26,55.423,256,55.423V7.918C118.974,7.918,7.918,118.974,7.918,256  S118.974,504.082,256,504.082v-47.505C145.26,456.577,55.423,366.74,55.423,256z"
+   id="path5" />
+
+
+
+
+<g
+   id="g11">
+	
+	
+</g>
+</svg>

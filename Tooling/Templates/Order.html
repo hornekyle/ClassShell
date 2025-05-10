@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		body {
+			font-family:sans-serif;
+			font-size: 0.75cm;
+		}
+		div,input,select,table {
+			width: 100%;
+			display: block;
+		}
+		table {border-spacing: 0pt;}
+		td {padding: 3pt;}
+		tr:nth-child(even) {background-color: silver;}
+		tr:nth-child(odd) {background-color: whitesmoke;}
+		tr:first-child {color: white; background-color: slategray;}
+		
+		#student_display {
+			font-size: 3cm;
+			text-align: center;
+			height: 10cm;
+		}
+		input,select {
+			height: 3cm;
+			font-size: 2.5cm;
+		}
+	</style>
+	<script>
+		students = {FIXME};
+		COOLDOWN = 7;
+		
+		function setup() {
+			build_menu();
+			select_student();
+		}
+		
+		function build_menu() {
+			// Identify sections
+			var sections = new Set();
+			for (student in students) {
+				var section = students[student][1];
+				sections.add(section);
+			}
+			sections = Array.from(sections);
+			
+			// Populate section select options
+			var menu = document.getElementById("section_select");
+			for (k in sections) {
+				var option = document.createElement("option");
+				option.value = sections[k];
+				option.text = "Section: "+sections[k];
+				menu.appendChild(option);
+			}
+		}
+		
+		function build_display(student,section) {
+			const student_display = document.getElementById("student_display");
+			student_display.innerHTML = students[student][2];
+			
+			const table = document.getElementById("students_display");
+			table.innerHTML = "";
+			
+			const headings = ["Username","Name","Section","|"+"=".repeat(COOLDOWN)+"|"];
+			const row = table.insertRow();
+			for (k in headings) {
+				const cell = row.insertCell();
+				cell.innerHTML = headings[k];
+				}
+			
+			for (student in students) {
+				if (students[student][1]!=section) continue;
+				
+				const row = table.insertRow();
+				const cell = row.insertCell();
+				cell.innerHTML = student;
+				
+				N = students[student].length-1;
+				for (k in students[student]) {
+					const cell = row.insertCell();
+					if (k==2) {
+						var width = students[student][N-k];
+						cell.innerHTML = ((width>0)?"|":"|")+"=".repeat(width)+"";
+						
+						color = (width>0)?"mediumseagreen":"dodgerblue";
+						cell.style.backgroundColor = color;
+					}
+					else {
+						cell.innerHTML = students[student][N-k];
+						}
+					if (k==0) {cell.style.width = "100%";}
+				}
+			}
+		}
+		
+		function select_student() {
+			const section = document.getElementById("section_select").value;
+			
+			var eligible = 0;
+			while (eligible<3) {
+				// Update status
+				for (student in students) {
+					if (students[student][1]!=section) continue;
+					students[student][0] = Math.max(0,students[student][0]-1);
+				}
+				
+				// Count eligible students
+				eligible = 0;
+				for (student in students) {
+					if (students[student][1]!=section) continue;
+					if (students[student][0]==0) eligible++;
+				}
+			}
+			
+			// Select student
+			var pick = Math.floor(Math.random()*(eligible));
+			var ordinal = 0;
+			var selected_student = "";
+			for (student in students) {
+				if (students[student][1]!=section) continue;
+				if (students[student][0]!=0      ) continue;
+				if (ordinal==pick) {selected_student = student; break;}
+				ordinal++;
+			}
+			students[selected_student][0] = COOLDOWN;
+			
+			build_display(selected_student,section);
+		}
+		
+		function load_storage() {
+			text = localStorage['students'];
+			students = JSON.parse(text);
+			select_student();
+		}
+		
+		function save_storage() {
+			text = JSON.stringify(students);
+			localStorage['students'] = text;
+		}
+	</script>
+</head>
+<body onload="setup()">
+	<div id="student_display">FIXME</div>
+	
+	<input type="button" value="Select Student" onclick="select_student()">
+	<select id="section_select" onchange="select_student()"></select>
+	
+	<table id="students_display"></table>
+	<input type="button" value="Load Storage" onclick="load_storage()">
+	<input type="button" value="Save Storage" onclick="save_storage()">
+</body>
+</html>

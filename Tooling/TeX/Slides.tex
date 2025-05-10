@@ -1,0 +1,16 @@
+\RequirePackage{ifthen}
+\RequirePackage{xstring}
+
+% Create module command
+\newcommand{\SetTheModule}[1]{\def\themodule{#1}}
+\newcommand{\SetTheAssignment}[1]{\def\theassignment{#1}}
+
+% Setup title block for most components
+\subtitle{\CourseVarNumber: \CourseVarSection}
+\author{\CourseVarInstructor}
+\date{\CourseVarDate}
+\institute{\CourseVarInstitutionBlock}
+\titlegraphic{\includegraphics[height=0.6in]{../../Figures/Logos/Slides}}
+
+\usecolortheme{ABI-MPL}
+\usetheme{ABI}

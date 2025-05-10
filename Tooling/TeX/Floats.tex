@@ -1,0 +1,81 @@
+\RequirePackage{float}
+\RequirePackage{caption}
+\RequirePackage{colortbl}
+\RequirePackage{tabularx}
+
+%=============%
+%== Figures ==%
+%=============%
+
+\captionsetup[figure]{
+	margin={1em,1em},
+	labelfont={sf,bf,color=C0},
+	textfont={sf,it},
+	format=plain,
+	labelsep=quad,
+	justification=justified,
+	singlelinecheck=off,
+}
+
+\makeatletter
+\let\OldFigure\figure
+\def\figure{\@ifnextchar[\figure@i \figure@ii}
+\def\figure@i[#1]{\OldFigure[#1]\begin{CMEFigureBox}}
+\def\figure@ii{\OldFigure\begin{CMEFigureBox}}
+\makeatother
+
+\let\OldEndFigure\endfigure
+\def\endfigure{\end{CMEFigureBox}\OldEndFigure}
+
+
+%============%
+%== Tables ==%
+%============%
+
+\captionsetup[table]{
+	margin={1em,1em},
+	labelfont={sf,bf,color=C0},
+	textfont={sf,it},
+	format=plain,
+	labelsep=quad,
+	justification=justified,
+	singlelinecheck=off,
+}
+
+\makeatletter
+\let\OldTable\table
+\def\table{\@ifnextchar[\table@i \table@ii}
+\def\table@i[#1]{\OldTable[#1]\begin{CMETableBox}}
+\def\table@ii{\OldTable\begin{CMETableBox}}
+\makeatother
+
+\let\OldEndTable\endtable
+\def\endtable{\end{CMETableBox}\OldEndFigure}
+
+%================%
+%== Algorithms ==%
+%================%
+
+\floatstyle{plain}
+\restylefloat*{algorithm}
+
+\captionsetup[algorithm]{
+	margin={1em,1em},
+	labelfont={sf,bf,color=C0},
+	textfont={sf,it},
+	format=plain,
+	labelsep=quad,
+	justification=justified,
+	singlelinecheck=off,
+}
+
+\makeatletter
+\let\OldAlgorithm\algorithm
+\def\algorithm{\@ifnextchar[\algorithm@i \algorithm@ii}
+\def\algorithm@i[#1]{\OldAlgorithm[#1]\begin{CMEAlgorithmBox}}
+\def\algorithm@ii{\OldAlgorithm\begin{CMEAlgorithmBox}}
+\makeatother
+
+\let\OldEndAlgorithm\endalgorithm
+\def\endalgorithm{\end{CMEAlgorithmBox}\OldEndAlgorithm}
+
